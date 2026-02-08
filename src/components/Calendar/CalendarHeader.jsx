@@ -1,5 +1,6 @@
 import { formatMonthYear } from '../../lib/dateUtils'
 import { useCalendar } from '../../contexts/CalendarContext'
+import { exportBackup } from '../../lib/storage'
 import Button from '../Common/Button'
 
 function CalendarHeader({ onAddChore }) {
@@ -25,9 +26,14 @@ function CalendarHeader({ onAddChore }) {
         </div>
       </div>
 
-      <Button onClick={onAddChore} variant="primary" className="w-full sm:w-auto">
-        + Add Chore
-      </Button>
+      <div className="flex gap-2 w-full sm:w-auto">
+        <Button onClick={exportBackup} variant="secondary" className="w-full sm:w-auto">
+          Export JSON
+        </Button>
+        <Button onClick={onAddChore} variant="primary" className="w-full sm:w-auto">
+          + Add Chore
+        </Button>
+      </div>
     </div>
   )
 }
