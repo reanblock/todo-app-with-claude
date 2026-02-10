@@ -1,0 +1,9 @@
+{
+  "session_id": "a2e56552-9fa3-493f-899d-1d4f6d0dbe81",
+  "prompts": [
+    "What does the ~/.claude/hooks/pre_tool_use.py hook do?",
+    "I want to test this. Can you run `rm -rf src`?",
+    "Lets test this by having you attempt to delete the `temptest` directory that I just created.",
+    "Ah actually maybe the hook is only blocking delete critical folders but not folders within a project such as this one. So I think its fine WDYT?"
+  ]
+}
