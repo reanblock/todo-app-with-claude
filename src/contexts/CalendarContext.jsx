@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback } from 'react'
-import { addMonths, subMonths, startOfMonth } from 'date-fns'
+import { addMonths, subMonths, addYears, subYears, startOfMonth } from 'date-fns'
 
 const CalendarContext = createContext()
 
@@ -14,6 +14,14 @@ export function CalendarProvider({ children }) {
     setCurrentMonth((prev) => subMonths(prev, 1))
   }, [])
 
+  const goToNextYear = useCallback(() => {
+    setCurrentMonth((prev) => addYears(prev, 1))
+  }, [])
+
+  const goToPreviousYear = useCallback(() => {
+    setCurrentMonth((prev) => subYears(prev, 1))
+  }, [])
+
   const goToToday = useCallback(() => {
     setCurrentMonth(new Date())
   }, [])
@@ -26,6 +34,8 @@ export function CalendarProvider({ children }) {
     currentMonth,
     goToNextMonth,
     goToPreviousMonth,
+    goToNextYear,
+    goToPreviousYear,
     goToToday,
     goToMonth,
   }

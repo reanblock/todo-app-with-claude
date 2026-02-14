@@ -4,7 +4,7 @@ import { exportBackup } from '../../lib/storage'
 import Button from '../Common/Button'
 
 function CalendarHeader({ onAddChore }) {
-  const { currentMonth, goToPreviousMonth, goToNextMonth, goToToday } = useCalendar()
+  const { currentMonth, goToPreviousMonth, goToNextMonth, goToPreviousYear, goToNextYear, goToToday } = useCalendar()
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
@@ -13,15 +13,21 @@ function CalendarHeader({ onAddChore }) {
           {formatMonthYear(currentMonth)}
         </h2>
 
-        <div className="flex gap-2">
-          <Button onClick={goToPreviousMonth} variant="secondary" size="sm">
+        <div className="flex gap-2 flex-wrap">
+          <Button onClick={goToPreviousMonth} variant="yellow" size="sm">
             <span className="hidden sm:inline">←</span> Prev
           </Button>
           <Button onClick={goToToday} variant="secondary" size="sm">
             Today
           </Button>
-          <Button onClick={goToNextMonth} variant="secondary" size="sm">
+          <Button onClick={goToNextMonth} variant="green" size="sm">
             Next <span className="hidden sm:inline">→</span>
+          </Button>
+          <Button onClick={goToPreviousYear} variant="secondary" size="sm">
+            ← Last Year
+          </Button>
+          <Button onClick={goToNextYear} variant="secondary" size="sm">
+            Next Year →
           </Button>
         </div>
       </div>
