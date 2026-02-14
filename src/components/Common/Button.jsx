@@ -10,7 +10,7 @@ function Button({
   className = '',
   ...props
 }) {
-  const baseStyles = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const baseStyles = 'font-medium rounded-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 hover:shadow-md active:scale-95'
 
   const variants = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 disabled:bg-blue-300',
@@ -33,7 +33,7 @@ function Button({
         baseStyles,
         variants[variant],
         sizes[size],
-        disabled && 'cursor-not-allowed opacity-50',
+        disabled && 'cursor-not-allowed opacity-50 hover:scale-100 hover:shadow-none',
         className
       )}
       {...props}
