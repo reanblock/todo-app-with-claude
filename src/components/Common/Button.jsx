@@ -8,9 +8,10 @@ function Button({
   onClick,
   disabled = false,
   className = '',
+  animated = false,
   ...props
 }) {
-  const baseStyles = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const baseStyles = 'font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2'
 
   const variants = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 disabled:bg-blue-300',
@@ -24,6 +25,8 @@ function Button({
     lg: 'px-6 py-3 text-lg',
   }
 
+  const animationStyle = animated ? 'animate-pulse-subtle hover:animate-none' : ''
+
   return (
     <button
       type={type}
@@ -34,6 +37,7 @@ function Button({
         variants[variant],
         sizes[size],
         disabled && 'cursor-not-allowed opacity-50',
+        animationStyle,
         className
       )}
       {...props}

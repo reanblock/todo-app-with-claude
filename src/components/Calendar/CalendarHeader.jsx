@@ -30,7 +30,7 @@ function CalendarHeader({ onAddChore }) {
         <Button onClick={exportBackup} variant="secondary" className="w-full sm:w-auto">
           Export JSON
         </Button>
-        <Button onClick={onAddChore} variant="primary" className="w-full sm:w-auto">
+        <Button onClick={onAddChore} variant="primary" animated className="w-full sm:w-auto">
           + Add Chore
         </Button>
       </div>
