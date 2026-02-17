@@ -27,4 +27,4 @@ dist-ssr
 *.sw?
 
 # claude
-./claude/data/sessions
+./claude/data
