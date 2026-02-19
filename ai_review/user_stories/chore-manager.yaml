@@ -1,0 +1,28 @@
+stories:
+  - name: "Home page loads and shows current month"
+    url: "http://localhost:5173/"
+    workflow: |
+      Navigate to http://localhost:5173/
+      Verify the Office Chore Manager home page loads successfully
+      Verify the calendar is displaying the current month and year (February 2026)
+      Verify the day-of-week headers are visible (Sun, Mon, Tue, Wed, Thu, Fri, Sat)
+
+  - name: "Navigate between months using Prev and Next buttons"
+    url: "http://localhost:5173/"
+    workflow: |
+      Navigate to http://localhost:5173/
+      Verify the calendar shows the current month (February 2026)
+      Click the "Prev" button and verify the calendar changes to January 2026
+      Click the "Next" button and verify the calendar returns to February 2026
+      Click the "Next" button again and verify the calendar changes to March 2026
+
+  - name: "Add a chore and verify it appears on the calendar"
+    url: "http://localhost:5173/"
+    workflow: |
+      Navigate to http://localhost:5173/
+      Click the "Add Chore" button
+      Verify the chore creation form or modal opens
+      Fill in the chore name with "Clean Kitchen"
+      Set the date to February 20, 2026
+      Save the chore by clicking the submit or save button
+      Verify the chore "Clean Kitchen" appears on February 20 in the calendar view

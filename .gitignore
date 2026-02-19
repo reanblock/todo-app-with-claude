@@ -28,3 +28,7 @@ dist-ssr
 
 # claude
 .claude/data/
+
+# Playwright
+.playwright-cli
+screenshots

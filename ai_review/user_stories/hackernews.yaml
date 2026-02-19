@@ -1,0 +1,7 @@
+stories:
+  - name: "Front page loads with posts"
+    url: "https://news.ycombinator.com/"
+    workflow: |
+      Navigate to https://news.ycombinator.com/
+      Verify the front page loads successfully
+      Verify at least 10 posts are visible, each with a title and a link
