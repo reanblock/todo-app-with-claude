@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { startOfMonth, endOfMonth, addMonths, subMonths } from 'date-fns'
 import CalendarHeader from './components/Calendar/CalendarHeader'
 import MonthView from './components/Calendar/MonthView'
+import AgendaView from './components/Agenda/AgendaView'
 import ChoreModal from './components/Chores/ChoreModal'
 import ConfirmDialog from './components/Common/ConfirmDialog'
 import { useChores } from './contexts/ChoreContext'
@@ -9,7 +10,7 @@ import { useCalendar } from './contexts/CalendarContext'
 import { isRecurringInstance } from './types/chore'
 
 function App() {
-  const { currentMonth } = useCalendar()
+  const { currentMonth, viewMode } = useCalendar()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const [selectedChore, setSelectedChore] = useState(null)
@@ -27,13 +28,13 @@ function App() {
     templates,
   } = useChores()
 
-  // Generate instances when month changes
+  // Generate instances when month changes (calendar mode)
   useEffect(() => {
     // Generate for current month ± 1 month buffer
     const startDate = startOfMonth(subMonths(currentMonth, 1))
     const endDate = endOfMonth(addMonths(currentMonth, 1))
     generateForDateRange(startDate, endDate)
-  }, [currentMonth, generateForDateRange])
+  }, [currentMonth]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAddChore = () => {
     setSelectedChore(null)
@@ -137,11 +138,19 @@ function App() {
         </h1>
 
         <CalendarHeader onAddChore={handleAddChore} />
-        <MonthView
-          currentMonth={currentMonth}
-          onChoreClick={handleChoreClick}
-          onToggleComplete={toggleComplete}
-        />
+
+        {viewMode === 'agenda' ? (
+          <AgendaView
+            onChoreClick={handleChoreClick}
+            onToggleComplete={toggleComplete}
+          />
+        ) : (
+          <MonthView
+            currentMonth={currentMonth}
+            onChoreClick={handleChoreClick}
+            onToggleComplete={toggleComplete}
+          />
+        )}
 
         <ChoreModal
           isOpen={isModalOpen}

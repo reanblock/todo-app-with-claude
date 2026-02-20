@@ -7,7 +7,8 @@ import {
   format,
   isSameDay,
   isSameMonth,
-  isToday
+  isToday,
+  isTomorrow,
 } from 'date-fns'
 
 /**
@@ -72,4 +73,20 @@ export function checkIsSameDay(date1, date2) {
  */
 export function checkIsSameMonth(date, monthDate) {
   return isSameMonth(date, monthDate)
+}
+
+/**
+ * Format a date for the agenda view header.
+ * - "Today — Friday, Feb 20" for today
+ * - "Tomorrow — Saturday, Feb 21" for tomorrow
+ * - "Wednesday, Feb 25" for all other dates
+ */
+export function formatAgendaDate(date) {
+  if (isToday(date)) {
+    return `Today — ${format(date, 'EEEE, MMM d')}`
+  }
+  if (isTomorrow(date)) {
+    return `Tomorrow — ${format(date, 'EEEE, MMM d')}`
+  }
+  return format(date, 'EEEE, MMM d')
 }

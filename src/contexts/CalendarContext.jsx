@@ -5,6 +5,7 @@ const CalendarContext = createContext()
 
 export function CalendarProvider({ children }) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [viewMode, setViewMode] = useState('calendar') // 'calendar' | 'agenda'
 
   const goToNextMonth = useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1))
@@ -28,6 +29,8 @@ export function CalendarProvider({ children }) {
     goToPreviousMonth,
     goToToday,
     goToMonth,
+    viewMode,
+    setViewMode,
   }
 
   return (
