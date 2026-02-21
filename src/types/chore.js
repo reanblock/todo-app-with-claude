@@ -62,8 +62,9 @@ export function isRecurringTemplate(chore) {
 }
 
 /**
- * Check if a chore is a recurring instance
+ * Check if a chore is a recurring instance.
+ * Uses loose null check (== null) to treat both null and undefined as "not set".
  */
 export function isRecurringInstance(chore) {
-  return chore.recurrence?.parentId !== null
+  return chore.recurrence?.parentId != null
 }
