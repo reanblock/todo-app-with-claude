@@ -1,24 +1,35 @@
 # Office Chore Manager
 
-A modern, responsive chore management application with an Outlook-style calendar view. Built with React, Vite, and Tailwind CSS.
+A modern, responsive chore management application with an Outlook-style calendar
+view. Built with React, Vite, and Tailwind CSS.
 
-![Office Chore Manager](https://img.shields.io/badge/React-18.3-blue) ![Vite](https://img.shields.io/badge/Vite-6.0-purple) ![Tailwind](https://img.shields.io/badge/Tailwind-4.1-cyan)
+![Office Chore Manager](https://img.shields.io/badge/React-18.3-blue) 
+![Vite](https://img.shields.io/badge/Vite-6.0-purple) 
+![Tailwind](https://img.shields.io/badge/Tailwind-4.1-cyan)
+![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen)
 
 ## Features
 
 ### Core Functionality
-- 📅 **Monthly Calendar View** - Outlook-style grid showing all your chores at a glance
-- ➕ **CRUD Operations** - Add, edit, and delete chores with an intuitive modal interface
-- 🔄 **Recurring Chores** - Set chores to repeat daily, weekly, bi-weekly, or monthly
+- 📅 **Monthly Calendar View** - Outlook-style grid showing all your chores at a
+glance
+- ➕ **CRUD Operations** - Add, edit, and delete chores with an intuitive modal 
+interface
+- 🔄 **Recurring Chores** - Set chores to repeat daily, weekly, bi-weekly, or 
+monthly
 - 💾 **Automatic Persistence** - All data saved to browser's localStorage
-- 📆 **Calendar Navigation** - Easy navigation between months with Previous/Next/Today buttons
+- 📆 **Calendar Navigation** - Easy navigation between months with 
+Previous/Next/Today buttons
 
 ### Advanced Features
 - ✅ **Completion Toggle** - Mark chores complete/incomplete with checkboxes
-- 🎯 **Smart Recurring Management** - Edit or delete single occurrences or entire series
+- 🎯 **Smart Recurring Management** - Edit or delete single occurrences or 
+entire series
 - 📱 **Responsive Design** - Optimized for desktop, tablet, and mobile devices
-- 🎨 **Visual Feedback** - Completed chores shown with strikethrough and green styling
-- 🗓️ **Auto-Generation** - Recurring chore instances automatically appear when navigating months
+- 🎨 **Visual Feedback** - Completed chores shown with strikethrough and green 
+styling
+- 🗓️ **Auto-Generation** - Recurring chore instances automatically appear when 
+navigating months
 
 ## Prerequisites
 
@@ -63,6 +74,35 @@ Preview the production build locally:
 npm run preview
 ```
 
+## Testing
+
+The project uses [Vitest](https://vitest.dev/) as the test runner, configured
+via `vite.config.js` with the `happy-dom` environment.
+
+### Run all tests (single pass)
+
+```bash
+npm test
+```
+
+### Run tests in watch mode (re-runs on file changes)
+
+```bash
+npm run test:watch
+```
+
+### What's tested
+
+| Module | Test file | Tests |
+|--------|-----------|-------|
+| `src/lib/dateUtils.js` | `src/lib/__tests__/dateUtils.test.js` | Calendar grid generation, date formatting, today/tomorrow detection |
+| `src/lib/recurrenceEngine.js` | `src/lib/__tests__/recurrenceEngine.test.js` | Next-occurrence calculation, instance generation, deduplication |
+| `src/lib/storage.js` | `src/lib/__tests__/storage.test.js` | localStorage load/save/clear with mocked storage |
+| `src/types/chore.js` | `src/types/__tests__/chore.test.js` | Chore creation, validation, template/instance helpers |
+
+All tests are **unit tests only** — external dependencies (localStorage) are
+mocked, and no browser or network interaction is required.
+
 ## Usage Guide
 
 ### Adding a Chore
@@ -89,7 +129,8 @@ When adding or editing a chore, select a repeat pattern:
    - **Edit/Delete all future occurrences** - Updates the entire series
 
 ### Marking Chores Complete
-Click the checkbox next to any chore to toggle its completion status. Completed chores appear with a green background and strikethrough text.
+Click the checkbox next to any chore to toggle its completion status. Completed 
+chores appear with a green background and strikethrough text.
 
 ### Navigating the Calendar
 - **Prev** - Go to previous month
@@ -125,8 +166,10 @@ Click the checkbox next to any chore to toggle its completion status. Completed 
     recurrenceEngine.js    # Logic for generating recurring instances
     storage.js             # localStorage wrapper with migrations
     dateUtils.js           # Date manipulation helpers
+    __tests__/             # Unit tests for lib modules
   /types
     chore.js               # Data models and validation
+    __tests__/             # Unit tests for type helpers
   App.jsx                  # Main application component
   main.jsx                 # Application entry point
   index.css               # Global styles and Tailwind imports
@@ -137,12 +180,14 @@ Click the checkbox next to any chore to toggle its completion status. Completed 
 - **[React 18](https://react.dev/)** - UI framework
 - **[Vite 6](https://vitejs.dev/)** - Build tool and dev server
 - **[Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[date-fns](https://date-fns.org/)** - Modern date utility library
-- **[clsx](https://github.com/lukeed/clsx)** - Conditional className utility
+- **(https://date-fns.org/)** - Modern date utility library
+- **(https://github.com/lukeed/clsx)** - Conditional className utility
+- **[Vitest](https://vitest.dev/)** - Unit test framework (dev dependency)
 
 ## Data Storage
 
-All chore data is stored in the browser's `localStorage` under the key `chore-app-data`. The storage schema includes:
+All chore data is stored in the browser's `localStorage` under the key 
+`chore-app-data`. The storage schema includes:
 
 ```javascript
 {
@@ -174,7 +219,10 @@ We welcome contributions! Here's how you can help:
    git checkout -b feature/your-feature-name
    ```
 3. Make your changes
-4. Test thoroughly (run the app and verify your changes)
+4. Run the tests to make sure nothing is broken
+   ```bash
+   npm test
+   ```
 5. Commit with a descriptive message
    ```bash
    git commit -m "Add feature: description of your changes"
@@ -197,6 +245,7 @@ We welcome contributions! Here's how you can help:
 ### Testing Your Changes
 
 Before submitting a PR, please verify:
+- [ ] All unit tests pass (`npm test`)
 - [ ] App runs without errors (`npm run dev`)
 - [ ] All existing features still work
 - [ ] New features work as expected
@@ -215,7 +264,8 @@ Ideas for future development:
 - [ ] **Categories** - Organize chores by category with color coding
 - [ ] **Search & Filter** - Find chores quickly by title, date, or assignee
 - [ ] **Statistics** - Dashboard showing completion rates and trends
-- [ ] **Custom recurrence** - More flexible scheduling (e.g., "every 3rd Tuesday")
+- [ ] **Custom recurrence** - More flexible scheduling (e.g., "every 3rd 
+Tuesday")
 - [ ] **Multi-user sync** - Cloud backend for team collaboration
 - [ ] **Drag & drop** - Reschedule chores by dragging to different dates
 
